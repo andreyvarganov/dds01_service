@@ -1,0 +1,79 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <Card112 xmlns="http://www.telda.ru/dds_01_integration_service/soap_service/integration">
+            <card>
+                <nEmergencyCardId>12922645</nEmergencyCardId>
+                <dtCreate>2020-05-19T00:06:17.000+03:00</dtCreate>
+                <dtIncident>2020-05-19T00:06:17.000+03:00</dtIncident>
+                <strCdPN>7706</strCdPN>
+                <strCgPN>1411</strCgPN>
+                <nCallTypeId>4</nCallTypeId>
+                <nImportanceLevelId/>
+                <strCreator>Главный Специалист (245 т.3001)</strCreator>
+                <strPhoneOwner/>
+                <nSUBRFID>15</nSUBRFID>
+                <nTOWNID>36</nTOWNID>
+                <nTOPONIMID/>
+                <nRAIONID>7805</nRAIONID>
+                <nGEONIMID>2221</nGEONIMID>
+                <strAddressString>Санкт-Петербург, г.Санкт-Петербург, проспект Народного Ополчения</strAddressString>
+                <strBuilding>133</strBuilding>
+                <strCorps/>
+                <strRoom/>
+                <strAdditionalLocationInfo/>
+                <strEntrance/>
+                <strEntranceCode/>
+                <strStoreys>9</strStoreys>
+                <strIncidentDescription>101, перевод из 004. На л/кл у входа в квартиру задымление и запах горелой изоляции из эл. щита</strIncidentDescription>
+                <nIncidentTypeID/>
+                <strCallerContactPhone>7569704</strCallerContactPhone>
+                <strDeclarantName>Вера </strDeclarantName>
+                <strDeclarantLastName>Лебедева</strDeclarantLastName>
+                <strDeclarantMiddleName>Леонидовна</strDeclarantMiddleName>
+                <strDeclarantBuildingNumber>133</strDeclarantBuildingNumber>
+                <nDeclarantSUBRFID>15</nDeclarantSUBRFID>
+                <nDeclarantTOWNID>36</nDeclarantTOWNID>
+                <nDeclarantTOPONIMID/>
+                <nDeclarantRAIONID>7805</nDeclarantRAIONID>
+                <nDeclarantGEONIMID>2221</nDeclarantGEONIMID>
+                <strDeclarantAddressString>Санкт-Петербург, г.Санкт-Петербург, проспект Народного Ополчения</strDeclarantAddressString>
+                <strDeclarantCorps/>
+                <strDeclarantFlat>53</strDeclarantFlat>
+                <geoLatitude>59.835319</geoLatitude>
+                <geoLongitude>30.262437</geoLongitude>
+                <declarantGeoLatitude>59.835319</declarantGeoLatitude>
+                <declarantGeoLongitude>30.262437</declarantGeoLongitude>
+                <callId>30000058271584478941</callId>
+                <strLanguage/>
+                <lNear>0</lNear>
+                <strKm/>
+                <nCasualties/>
+                <lHumanThreat>0</lHumanThreat>
+                <strCharacter>ЗАГОРАНИЕ</strCharacter>
+                <srtCondition/>
+                <nNumberStoreys>9</nNumberStoreys>
+                <nGaz>0</nGaz>
+                <nTime/>
+                <strRepercussion/>
+                <nPeople>0</nPeople>
+                <lHasCard01>1</lHasCard01>
+                <lHasCard02>0</lHasCard02>
+                <lHasCard03>0</lHasCard03>
+                <lHasCard04>0</lHasCard04>
+                <lHasCardAT>0</lHasCardAT>
+                <lHasCardCommServ>1</lHasCardCommServ>
+                <nCard01SyntheticState>2</nCard01SyntheticState>
+                <nCard02SyntheticState/>
+                <nCard03SyntheticState/>
+                <nCard04SyntheticState/>
+                <nCardATSyntheticState/>
+                <nCardCommServSyntheticState>2</nCardCommServSyntheticState>
+                <strServiceOperator01/>
+                <strRegistrationNumber01/>
+                <strServiceOperator02/>
+                <strRegistrationNumber02/>
+            </card>
+        </Card112>
+    </soapenv:Body>
+</soapenv:Envelope>

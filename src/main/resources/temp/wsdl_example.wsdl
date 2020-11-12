@@ -1,0 +1,141 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.telda.ru/dds_01_integration_service/integration" targetNamespace="http://www.telda.ru/dds_01_integration_service/integration">
+    <wsdl:types>
+        <xs:schema xmlns:tns="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.xmlsoap.org/soap/encoding/">
+            <xs:element name="Card112">
+                <!--  Request  -->
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="1" minOccurs="0" name="card" type="tns:Card112Type"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:complexType name="Card112Type">
+                <!--  Object  -->
+                <xs:sequence>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nEmergencyCardId" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nCardState" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="dtCreate" type="xs:dateTime"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="dtIncident" type="xs:dateTime"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="lHasCard02" type="xs:boolean"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="lHasCard03" type="xs:boolean"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="lHasCard04" type="xs:boolean"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="lHasCardAT" type="xs:boolean"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="lHasCardCommServ" type="xs:boolean"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nEmergencyCard01" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="dtCreate01" type="xs:dateTime"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="dtIncident01" type="xs:dateTime"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strDeclarant01" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nCard02SyntheticState" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="dtCreate02" type="xs:dateTime"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="dtIncident02" type="xs:dateTime"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strDeclarant02" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strNom02" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nCard03SyntheticState" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="dtCreate03" type="xs:dateTime"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="dtIncident03" type="xs:dateTime"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strDeclarant03" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strNom03" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nCard04SyntheticState" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="dtCreate04" type="xs:dateTime"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="dtIncident04" type="xs:dateTime"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strDeclarant04" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strNom04" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nCardATSyntheticState" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="dtCreateAT" type="xs:dateTime"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="dtIncidentAT" type="xs:dateTime"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strDeclarantAT" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strNomAT" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nCardCommServSyntheticState" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="dtCreateCommServ" type="xs:dateTime"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="dtIncidentCommServ" type="xs:dateTime"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strDeclarantCommServ" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strNomCommServ" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strCdPN" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strCgPN" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strCreator" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strPhoneOwner" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nSUBRFID" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nTOWNID" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nTOPONIMID" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nRAIONID" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nGEONIMID" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strAddressString" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strBuilding" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strCorps" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strRoom" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strAdditionalLocationInfo" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strEntrance" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strEntranceCode" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strStoreys" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strIncidentDescription" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nIncidentTypeID" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strCallerContactPhone" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strDeclarantName" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strDeclarantLastName" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strDeclarantMiddleName" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strDeclarantBuildingNumber" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nDeclarantSUBRFID" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nDeclarantTOWNID" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nDeclarantTOPONIMID" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nDeclarantRAIONID" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nDeclarantGEONIMID" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strDeclarantAddressString" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strDeclarantCorps" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strDeclarantFlat" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="geoLatitude" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="geoLongitude" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="declarantGeoLatitude" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="declarantGeoLongitude" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="callId" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strLanguage" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="lNear" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strKm" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nCasualties" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="lHumanThreat" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strCharacter" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="srtCondition" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nNumberStoreys" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nGaz" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nTime" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="strRepercussion" type="xs:string"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nPeople" type="xs:integer"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Card112Response">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="1" minOccurs="0" name="Card112Result" type="tns:Card112Result"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:complexType name="Card112Result">
+                <xs:sequence>
+                    <xs:element maxOccurs="1" minOccurs="0" name="errorCode" type="xs:integer"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="nEmergencyCardId" type="xs:integer"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="Card112Response">
+        <wsdl:part element="sch:Card112Response" name="Card112Response"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="integration01indicator">
+        <wsdl:operation name="Card112">
+            <wsdl:output message="tns:Card112Response" name="Card112Response"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="integration01indicatorSoap11" type="tns:integration01indicator">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Card112">
+            <soap:operation soapAction=""/>
+            <wsdl:output name="Card112Response">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="integration01indicatorService">
+        <wsdl:port binding="tns:integration01indicatorSoap11" name="integration01indicatorSoap11">
+            <soap:address location="http://localhost:8080/ws"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
