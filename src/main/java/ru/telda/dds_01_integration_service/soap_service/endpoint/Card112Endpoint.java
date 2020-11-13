@@ -20,7 +20,7 @@ public class Card112Endpoint {
     @PayloadRoot(namespace = NAMESPACE, localPart = "Card112")
     @ResponsePayload
     public Card112Response getCardStatus(@RequestPayload Card112 request){
-        return service.checkCard(request);
+        return service.getResponse(request);
     }
 
 }

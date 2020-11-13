@@ -6,6 +6,8 @@ import ru.telda.dds_01_integration_service.card_template.mapper.CardTemplateMapp
 import ru.telda.dds_01_integration_service.card_template.model.CardTemplate;
 import com.fasterxml.jackson.databind.JsonNode;
 
+import java.util.UUID;
+
 @Service
 public class CardTemplateService {
 
@@ -14,13 +16,17 @@ public class CardTemplateService {
 
     private CardTemplate cardTemplate;
 
-    public void insert(JsonNode node) {
-        cardTemplate = new CardTemplate(node);
+    public void insert(JsonNode node, UUID uuid) {
+        cardTemplate = new CardTemplate(node, uuid);
         mapper.insert(cardTemplate);
     }
 
-    public Long select(JsonNode node) {
-        cardTemplate = new CardTemplate(node);
-        return mapper.select(cardTemplate);
+    public Long countIdenticalCards(UUID cardTypeId, String extSystemCardId) {
+        return mapper.countIdenticalCards(cardTypeId, extSystemCardId);
     }
+
+    public UUID findCardTypeById() {
+        return mapper.findCardTypeById();
+    }
+
 }

@@ -4,39 +4,37 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="ru.telda.dds_01_integration_service.card_template.mapper.CardTemplateMapper">
+
         <resultMap id="cardTemplate" type="ru.telda.dds_01_integration_service.card_template.model.CardTemplate">
+
             <id property="id" column="id" jdbcType="OTHER" javaType="java.util.UUID" typeHandler="UuidTypeHandler"/>
-            <result property="cardId" column="cardid" javaType="java.math.BigInteger"/>
-            <result property="cardTypeId" column="cardtypeid" jdbcType="OTHER" javaType="java.util.UUID" typeHandler="UuidTypeHandler"/>
-            <result property="cardAddress" column="cardaddress"/>
-            <result property="cardData" column="carddata"/>
-            <result property="cardDescription" column="carddescription"/>
-            <result property="success" column="success"/>
-            <result property="isActive" column="isactive"/>
-            <result property="cardInfo" column="cardinfo" jdbcType="OTHER" javaType="com.fasterxml.jackson.databind.JsonNode"
-                    typeHandler="ru.telda.dds_01_integration_service.util.mybatisHandlers.JsonTypeHandler"/>
+            <result property="cardTypeId" column="cardId" jdbcType="OTHER" javaType="java.util.UUID" typeHandler="UuidTypeHandler"/>
+            <result property="extSystemCardId" column="cardTypeId" jdbcType="OTHER" javaType="java.util.UUID" typeHandler="UuidTypeHandler"/>
+            <result property="extCardContent" column="extCardContent" jdbcType="OTHER" javaType="com.fasterxml.jackson.databind.JsonNode"
+                    typeHandler="JsonTypeHandler"/>
+
         </resultMap>
 
-    <select id="select" parameterType="ru.telda.dds_01_integration_service.card_template.model.CardTemplate"
-            resultType="java.lang.Long">
-        select count(*) from extcard where #{card.cardId, javaType=java.math.BigInteger} = cardid and #{card.cardTypeId,
-                    jdbcType=OTHER, javaType=java.util.UUID, typeHandler=UuidTypeHandler} = cardtypeid;
+    <select id="findCardTypeById" resultType="java.util.UUID">
+        select i.* from nsi."extSystems" i
+                            inner join nsi.classifiers c on i.version = c.version
+        where c."codeName" = 'extSystems' and
+            i.code = '2';
     </select>
 
-    <insert id="insert">
-        insert into extcard (cardid, cardtypeid, success,
-                             isactive, carddecription, cardaddress,
-                             carddata, cardinfo)
-        values (#{card.cardId, javaType=java.math.BigInteger},
-                #{card.cardTypeId, jdbcType=OTHER, javaType=java.util.UUID, typeHandler=UuidTypeHandler},
-                #{card.success},
-                #{card.isActive},
-                #{card.cardDescription},
-                #{card.cardAddress},
-                #{card.cardData},
-                #{card.cardInfo, jdbcType=OTHER, javaType=com.fasterxml.jackson.databind.JsonNode,
+    <select id="countIdenticalCards" resultType="java.lang.Long">
+        select count(*)
+        from "extCard" where "cardTypeId" = #{cti, jdbcType=OTHER, javaType=java.util.UUID, typeHandler=UuidTypeHandler}
+                         and "extSystemCardId" = #{esci};
+    </select>
+
+    <insert id="insert" parameterType="ru.telda.dds_01_integration_service.card_template.model.CardTemplate">
+        insert into "extCard" ("cardTypeId", "extSystemCardId", "extCardContent")
+        values (#{card.cardTypeId, jdbcType=OTHER, javaType=java.util.UUID, typeHandler=UuidTypeHandler},
+                #{card.extSystemCardId},
+                #{card.extCardContent, jdbcType=OTHER, javaType=com.fasterxml.jackson.databind.JsonNode,
                 typeHandler=JsonTypeHandler}::json
                );
-
     </insert>
+
 </mapper>
