@@ -1,12 +1,13 @@
 package ru.telda.dds_01_integration_service.soap_service.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
-//import org.apache.log4j.Logger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.telda.dds_01_integration_service.card_template.service.CardTemplateService;
+import ru.telda.dds_01_integration_service.notify_service.CardResponseService;
+import ru.telda.dds_01_integration_service.notify_service.Notify;
 import ru.telda.dds_01_integration_service.soap_service.integration.Card112;
 import ru.telda.dds_01_integration_service.soap_service.integration.Card112Response;
 import ru.telda.dds_01_integration_service.soap_service.integration.Card112Result;
@@ -22,7 +23,12 @@ public class Card112Service {
     @Autowired
     private CardTemplateService service;
 
+    @Autowired
+    CardResponseService responseService;
+
     private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+    private Notify notify = new Notify();
 
     /**
      * метод, возвращающий ответ, формирующийся на основе данных, полученных с карточки
@@ -44,10 +50,19 @@ public class Card112Service {
             result.setErrorCode(BigInteger.ONE);
         }
 
+        // отправка отчета серверу dds
+        responseService.sendResponse(card, notify);
+
         response.setCard112Result(result);
         return response;
 
     }
+
+    /**
+     * Создаем карточку на основе данных, полученных из запроса и проверяем, есть ли такая карточка в БД
+     * @param request - запрос, содержащий данные о карточке
+     * @return true, если карточка с такими полями уже существует в БД. Иначе - false
+     */
 
     public boolean createAndCheckCard(Card112 request) {
 
@@ -68,13 +83,21 @@ public class Card112Service {
 
         Long count = service.countIdenticalCards(uuid, string);
 
+        notify.setNotifyId(uuid);
+
         if (count == 0) {
             log.info("Карточки с таким параметрамом еще не существует в БД.");
             service.insert(node, uuid);
             log.info("Карточка успешно сохранена в БД.\n");
+
+            notify.setApproved(true);
+
             return true;
         }
-        else log.warn("Карточка с таким параметром уже присутствует в БД.\n");
+        else {
+            log.warn("Карточка с таким параметром уже присутствует в БД.\n");
+            notify.setApproved(false);
+        }
 
         return false;
 

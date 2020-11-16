@@ -9,7 +9,7 @@
 
             <id property="id" column="id" jdbcType="OTHER" javaType="java.util.UUID" typeHandler="UuidTypeHandler"/>
             <result property="cardTypeId" column="cardId" jdbcType="OTHER" javaType="java.util.UUID" typeHandler="UuidTypeHandler"/>
-            <result property="extSystemCardId" column="cardTypeId" jdbcType="OTHER" javaType="java.util.UUID" typeHandler="UuidTypeHandler"/>
+            <result property="extSystemCardId" column="cardTypeId" jdbcType="OTHER"/>
             <result property="extCardContent" column="extCardContent" jdbcType="OTHER" javaType="com.fasterxml.jackson.databind.JsonNode"
                     typeHandler="JsonTypeHandler"/>
 
@@ -29,11 +29,14 @@
     </select>
 
     <insert id="insert" parameterType="ru.telda.dds_01_integration_service.card_template.model.CardTemplate">
-        insert into "extCard" ("cardTypeId", "extSystemCardId", "extCardContent")
+        insert into "extCard" ("cardTypeId", "extSystemCardId", "extCardContent", "description", "address", "cardDate")
         values (#{card.cardTypeId, jdbcType=OTHER, javaType=java.util.UUID, typeHandler=UuidTypeHandler},
                 #{card.extSystemCardId},
                 #{card.extCardContent, jdbcType=OTHER, javaType=com.fasterxml.jackson.databind.JsonNode,
-                typeHandler=JsonTypeHandler}::json
+                typeHandler=JsonTypeHandler}::json,
+                #{card.description},
+                #{card.address},
+                #{card.cardDate}
                );
     </insert>
 

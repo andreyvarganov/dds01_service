@@ -16,11 +16,17 @@ public class CardTemplate {
     private UUID cardTypeId;
     private String extSystemCardId;
     private JsonNode extCardContent;
+    private String description;
+    private String address;
+    private String cardDate;
 
     public CardTemplate(JsonNode node, UUID cardTypeId) {
         this.cardTypeId = cardTypeId;
         extSystemCardId = node.get("nemergencyCardId").asText();
         extCardContent = node;
+        description = node.get("strIncidentDescription").asText();
+        address = node.get("strAddressString").asText();
+        cardDate = node.get("dtCreate").asText();
     }
 
 }
