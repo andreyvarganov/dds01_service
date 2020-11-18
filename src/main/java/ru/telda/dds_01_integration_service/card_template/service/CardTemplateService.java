@@ -6,6 +6,7 @@ import ru.telda.dds_01_integration_service.card_template.mapper.CardTemplateMapp
 import ru.telda.dds_01_integration_service.card_template.model.CardTemplate;
 import com.fasterxml.jackson.databind.JsonNode;
 
+import java.math.BigInteger;
 import java.util.UUID;
 
 @Service
@@ -21,12 +22,16 @@ public class CardTemplateService {
         mapper.insert(cardTemplate);
     }
 
-    public Long countIdenticalCards(UUID cardTypeId, String extSystemCardId) {
+    public Long countIdenticalCards(UUID cardTypeId, BigInteger extSystemCardId) {
         return mapper.countIdenticalCards(cardTypeId, extSystemCardId);
     }
 
     public UUID findCardTypeById() {
         return mapper.findCardTypeById();
+    }
+
+    public UUID findCardId(BigInteger id) {
+        return mapper.findCardId(id);
     }
 
 }

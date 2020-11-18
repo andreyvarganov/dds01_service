@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.telda.dds_01_integration_service.card_template.service.CardTemplateService;
 import ru.telda.dds_01_integration_service.notify_service.CardResponseService;
-import ru.telda.dds_01_integration_service.notify_service.Notify;
 import ru.telda.dds_01_integration_service.soap_service.integration.Card112;
 import ru.telda.dds_01_integration_service.soap_service.integration.Card112Response;
 import ru.telda.dds_01_integration_service.soap_service.integration.Card112Result;
@@ -24,11 +23,11 @@ public class Card112Service {
     private CardTemplateService service;
 
     @Autowired
-    CardResponseService responseService;
+    private CardResponseService responseService;
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private Notify notify = new Notify();
+    //private Notify notify = new Notify();
 
     /**
      * метод, возвращающий ответ, формирующийся на основе данных, полученных с карточки
@@ -51,7 +50,7 @@ public class Card112Service {
         }
 
         // отправка отчета серверу dds
-        responseService.sendResponse(card, notify);
+        responseService.sendResponse(card);
 
         response.setCard112Result(result);
         return response;
@@ -75,28 +74,28 @@ public class Card112Service {
         UUID cardTypeId = service.findCardTypeById();
         log.info("Получена карточка с extSystemCardId = " + node.get("nemergencyCardId") + " и CardTypeId = " + cardTypeId);
 
-        return checkCardInBD(node, cardTypeId, node.get("nemergencyCardId").asText());
+        return checkCardInBD(node, cardTypeId, node.get("nemergencyCardId").bigIntegerValue());
 
     }
 
-    public boolean checkCardInBD(JsonNode node, UUID uuid, String string) {
+    public boolean checkCardInBD(JsonNode node, UUID uuid, BigInteger bi) {
 
-        Long count = service.countIdenticalCards(uuid, string);
+        Long count = service.countIdenticalCards(uuid, bi);
 
-        notify.setNotifyId(uuid);
+        //notify.setNotifyId(uuid);
 
         if (count == 0) {
             log.info("Карточки с таким параметрамом еще не существует в БД.");
             service.insert(node, uuid);
             log.info("Карточка успешно сохранена в БД.\n");
 
-            notify.setApproved(true);
+            //notify.setApproved(true);
 
             return true;
         }
         else {
             log.warn("Карточка с таким параметром уже присутствует в БД.\n");
-            notify.setApproved(false);
+            //notify.setApproved(false);
         }
 
         return false;

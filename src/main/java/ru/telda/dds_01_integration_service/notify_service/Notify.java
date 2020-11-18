@@ -9,7 +9,9 @@ import java.util.UUID;
 @Getter
 @Setter
 public class Notify {
+
     private UUID notifyId;
     private LocalDateTime date;
     private Boolean approved;
+
 }

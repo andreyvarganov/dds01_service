@@ -22,6 +22,10 @@
             i.code = '2';
     </select>
 
+    <select id="findCardId" resultType="java.util.UUID" parameterType="java.math.BigInteger">
+        select * from "extCard" where #{id, jdbcType=OTHER, javaType=java.math.BigInteger} = "extSystemCardId";
+    </select>
+
     <select id="countIdenticalCards" resultType="java.lang.Long">
         select count(*)
         from "extCard" where "cardTypeId" = #{cti, jdbcType=OTHER, javaType=java.util.UUID, typeHandler=UuidTypeHandler}
@@ -36,7 +40,7 @@
                 typeHandler=JsonTypeHandler}::json,
                 #{card.description},
                 #{card.address},
-                #{card.cardDate}
+                to_timestamp(#{card.cardDate})
                );
     </insert>
 

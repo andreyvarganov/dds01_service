@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigInteger;
 import java.util.UUID;
 
 @Getter
@@ -14,19 +15,19 @@ public class CardTemplate {
 
     private UUID id;
     private UUID cardTypeId;
-    private String extSystemCardId;
+    private BigInteger extSystemCardId;
     private JsonNode extCardContent;
     private String description;
     private String address;
-    private String cardDate;
+    private Long cardDate;
 
     public CardTemplate(JsonNode node, UUID cardTypeId) {
         this.cardTypeId = cardTypeId;
-        extSystemCardId = node.get("nemergencyCardId").asText();
+        extSystemCardId = node.get("nemergencyCardId").bigIntegerValue();
         extCardContent = node;
         description = node.get("strIncidentDescription").asText();
         address = node.get("strAddressString").asText();
-        cardDate = node.get("dtCreate").asText();
+        cardDate = node.get("dtCreate").asLong();
     }
 
 }
