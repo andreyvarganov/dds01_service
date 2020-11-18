@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigInteger;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.UUID;
 
 @Getter
@@ -19,7 +23,7 @@ public class CardTemplate {
     private JsonNode extCardContent;
     private String description;
     private String address;
-    private Long cardDate;
+    private LocalDateTime cardDate;
 
     public CardTemplate(JsonNode node, UUID cardTypeId) {
         this.cardTypeId = cardTypeId;
@@ -27,7 +31,7 @@ public class CardTemplate {
         extCardContent = node;
         description = node.get("strIncidentDescription").asText();
         address = node.get("strAddressString").asText();
-        cardDate = node.get("dtCreate").asLong();
+        cardDate = LocalDateTime.ofInstant(Instant.ofEpochMilli(node.get("dtCreate").asLong()), ZoneId.of("UTC-0"));
     }
 
 }

@@ -40,7 +40,7 @@
                 typeHandler=JsonTypeHandler}::json,
                 #{card.description},
                 #{card.address},
-                to_timestamp(#{card.cardDate})
+                #{card.cardDate}
                );
     </insert>
 

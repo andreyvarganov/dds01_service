@@ -27,8 +27,6 @@ public class Card112Service {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    //private Notify notify = new Notify();
-
     /**
      * метод, возвращающий ответ, формирующийся на основе данных, полученных с карточки
      * @param request - запрос, содержащий данные о карточке
@@ -82,20 +80,15 @@ public class Card112Service {
 
         Long count = service.countIdenticalCards(uuid, bi);
 
-        //notify.setNotifyId(uuid);
-
         if (count == 0) {
             log.info("Карточки с таким параметрамом еще не существует в БД.");
             service.insert(node, uuid);
             log.info("Карточка успешно сохранена в БД.\n");
 
-            //notify.setApproved(true);
-
             return true;
         }
         else {
             log.warn("Карточка с таким параметром уже присутствует в БД.\n");
-            //notify.setApproved(false);
         }
 
         return false;

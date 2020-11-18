@@ -25,7 +25,7 @@ public class CardResponseService {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Authorization", "Bearer swaggertoken");
 
-        HttpEntity<Notify> requestEntity = new HttpEntity<>(null, httpHeaders);
+        HttpEntity<String> requestEntity = new HttpEntity<>(null, httpHeaders);
 
         ResponseEntity<String> response = restTemplate.exchange(url + "/" + service.findCardId(card.getNEmergencyCardId()), HttpMethod.GET, requestEntity, String.class);
 
