@@ -9,7 +9,6 @@ import java.math.BigInteger;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.UUID;
 
 @Getter
@@ -25,13 +24,40 @@ public class CardTemplate {
     private String address;
     private LocalDateTime cardDate;
 
-    public CardTemplate(JsonNode node, UUID cardTypeId) {
+    private String addresses;
+    private UUID crossId;
+    private String crossName;
+    private String flat;
+    private Integer floor;
+    private Integer floors;
+    private String entrance;
+    private String entranceCode;
+
+    private LocalDateTime extRegDate;
+    private LocalDateTime eventDate;
+    private LocalDateTime sendedTo01Date;
+
+    public CardTemplate(JsonNode node, UUID cardTypeId, LocalDateTime dateTime) {
+
         this.cardTypeId = cardTypeId;
         extSystemCardId = node.get("nemergencyCardId").bigIntegerValue();
         extCardContent = node;
         description = node.get("strIncidentDescription").asText();
         address = node.get("strAddressString").asText();
         cardDate = LocalDateTime.ofInstant(Instant.ofEpochMilli(node.get("dtCreate").asLong()), ZoneId.of("UTC-0"));
+
+        addresses = null;
+        crossId = null;
+        crossName = null;
+        flat = node.get("strRoom").asText();
+        floor = null;
+        floors = node.get("strStoreys").asInt();
+        entrance = node.get("strEntrance").asText();
+        entranceCode = node.get("strEntranceCode").asText();
+
+        extRegDate = dateTime;
+        eventDate = LocalDateTime.ofInstant(Instant.ofEpochMilli(node.get("dtIncident").asLong()), ZoneId.of("UTC-0"));
+
     }
 
 }

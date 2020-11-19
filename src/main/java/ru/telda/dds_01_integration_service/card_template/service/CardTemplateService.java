@@ -7,6 +7,7 @@ import ru.telda.dds_01_integration_service.card_template.model.CardTemplate;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
@@ -15,10 +16,9 @@ public class CardTemplateService {
     @Autowired
     private CardTemplateMapper mapper;
 
-    private CardTemplate cardTemplate;
-
     public void insert(JsonNode node, UUID uuid) {
-        cardTemplate = new CardTemplate(node, uuid);
+        CardTemplate cardTemplate = new CardTemplate(node, uuid, LocalDateTime.now());
+        cardTemplate.setSendedTo01Date(LocalDateTime.now());
         mapper.insert(cardTemplate);
     }
 

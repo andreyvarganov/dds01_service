@@ -2,12 +2,14 @@ package ru.telda.dds_01_integration_service.card_template.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 import ru.telda.dds_01_integration_service.card_template.model.CardTemplate;
 
 import java.math.BigInteger;
 import java.util.UUID;
 
 @Mapper
+@Repository
 public interface CardTemplateMapper {
 
     void insert(@Param("card") CardTemplate cardTemplate);

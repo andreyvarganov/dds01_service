@@ -5,15 +5,15 @@
 
 <mapper namespace="ru.telda.dds_01_integration_service.card_template.mapper.CardTemplateMapper">
 
-        <resultMap id="cardTemplate" type="ru.telda.dds_01_integration_service.card_template.model.CardTemplate">
+<!--        <resultMap id="cardTemplate" type="ru.telda.dds_01_integration_service.card_template.model.CardTemplate">-->
 
-            <id property="id" column="id" jdbcType="OTHER" javaType="java.util.UUID" typeHandler="UuidTypeHandler"/>
-            <result property="cardTypeId" column="cardId" jdbcType="OTHER" javaType="java.util.UUID" typeHandler="UuidTypeHandler"/>
-            <result property="extSystemCardId" column="cardTypeId" jdbcType="OTHER"/>
-            <result property="extCardContent" column="extCardContent" jdbcType="OTHER" javaType="com.fasterxml.jackson.databind.JsonNode"
-                    typeHandler="JsonTypeHandler"/>
+<!--            <id property="id" column="id" jdbcType="OTHER" javaType="java.util.UUID" typeHandler="UuidTypeHandler"/>-->
+<!--            <result property="cardTypeId" column="cardId" jdbcType="OTHER" javaType="java.util.UUID" typeHandler="UuidTypeHandler"/>-->
+<!--            <result property="extSystemCardId" column="cardTypeId" jdbcType="OTHER"/>-->
+<!--            <result property="extCardContent" column="extCardContent" jdbcType="OTHER" javaType="com.fasterxml.jackson.databind.JsonNode"-->
+<!--                    typeHandler="JsonTypeHandler"/>-->
 
-        </resultMap>
+<!--        </resultMap>-->
 
     <select id="findCardTypeById" resultType="java.util.UUID">
         select i.* from nsi."extSystems" i
@@ -33,14 +33,27 @@
     </select>
 
     <insert id="insert" parameterType="ru.telda.dds_01_integration_service.card_template.model.CardTemplate">
-        insert into "extCard" ("cardTypeId", "extSystemCardId", "extCardContent", "description", "address", "cardDate")
+        insert into "extCard" ("cardTypeId", "extSystemCardId", "extCardContent", "description", "address", "cardDate",
+                               "addresses", "crossId", "crossName", "flat", "floor", "floors", "entrance", "entranceCode",
+                               "extRegDate", "eventDate", "sendedTo01Date")
         values (#{card.cardTypeId, jdbcType=OTHER, javaType=java.util.UUID, typeHandler=UuidTypeHandler},
                 #{card.extSystemCardId},
                 #{card.extCardContent, jdbcType=OTHER, javaType=com.fasterxml.jackson.databind.JsonNode,
                 typeHandler=JsonTypeHandler}::json,
                 #{card.description},
                 #{card.address},
-                #{card.cardDate}
+                #{card.cardDate},
+                #{card.addresses},
+                #{card.crossId},
+                #{card.crossName},
+                #{card.flat},
+                #{card.floor},
+                #{card.floors},
+                #{card.entrance},
+                #{card.entranceCode},
+                #{card.extRegDate},
+                #{card.eventDate},
+                #{card.sendedTo01Date}
                );
     </insert>
 
